@@ -37,6 +37,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
                                 url="https://cloud.google.com/speech-to-text"
                             ),
                             installed=True,
+                            version="1.0",
                             models=[
                                 AsrModel(
                                     name="google_web",
@@ -47,7 +48,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
                                     ),
                                     installed=True,
                                     languages=["ko-KR", "en-US", "ja-JP", "zh-CN"],
-                                    version="1.0"  # <--- Add this line
+                                    version="1.0"
                                 )
                             ],
                         )
