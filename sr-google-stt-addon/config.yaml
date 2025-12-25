@@ -1,0 +1,18 @@
+name: "SR Google STT"
+description: "Google Speech Recognition STT 서버"
+version: "1.0.0"
+slug: "sr_google_stt"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armv7
+  - armhf
+ports:
+  5005/tcp: null
+options:
+  port: 5005
+  language: "ko-KR"
+schema:
+  port: int
+  language: str
