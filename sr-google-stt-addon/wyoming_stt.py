@@ -6,9 +6,9 @@ import speech_recognition as sr
 from functools import partial
 from wyoming.audio import AudioChunk, AudioStart, AudioStop
 from wyoming.event import Event
-from wyoming.info import Describe, Info, Attribution, Stt
+from wyoming.info import Describe, Info, Attribution, Asr
 from wyoming.server import AsyncEventHandler, AsyncServer
-from wyoming.stt import Transcribe, Transcript
+from wyoming.asr import Transcribe, Transcript
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -28,8 +28,8 @@ class GoogleSttEventHandler(AsyncEventHandler):
             # 서버 정보 응답
             await self.write_event(
                 Info(
-                    stt=[
-                        Stt(
+                    asr=[
+                        Asr(
                             name="google_stt",
                             description="Google Speech Recognition",
                             attribution=Attribution(
