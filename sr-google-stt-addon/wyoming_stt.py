@@ -6,7 +6,7 @@ import speech_recognition as sr
 from functools import partial
 from wyoming.audio import AudioChunk, AudioStart, AudioStop
 from wyoming.event import Event
-from wyoming.info import Describe, Info, Attribution, SttProgram, SttModel
+from wyoming.info import Describe, Info, Attribution, Stt
 from wyoming.server import AsyncEventHandler, AsyncServer
 from wyoming.stt import Transcribe, Transcript
 
@@ -29,7 +29,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
             await self.write_event(
                 Info(
                     stt=[
-                        SttProgram(
+                        Stt(
                             name="google_stt",
                             description="Google Speech Recognition",
                             attribution=Attribution(
@@ -37,28 +37,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
                                 url="https://cloud.google.com/speech-to-text"
                             ),
                             installed=True,
-                            models=[
-                                SttModel(
-                                    name="google_stt_ko",
-                                    description="Korean",
-                                    attribution=Attribution(
-                                        name="Google",
-                                        url="https://cloud.google.com/speech-to-text"
-                                    ),
-                                    installed=True,
-                                    languages=["ko-KR"]
-                                ),
-                                SttModel(
-                                    name="google_stt_en",
-                                    description="English",
-                                    attribution=Attribution(
-                                        name="Google",
-                                        url="https://cloud.google.com/speech-to-text"
-                                    ),
-                                    installed=True,
-                                    languages=["en-US"]
-                                ),
-                            ],
+                            languages=["ko-KR", "en-US", "ja-JP", "zh-CN"],
                         )
                     ]
                 ).event()
@@ -95,7 +74,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
             return True
 
         if Transcribe.is_type(event.type):
-            # 직접 전사 요청 (일부 클라이언트)
+            # 직접 전사 요청
             transcribe = Transcribe.from_event(event)
             _LOGGER.debug("Transcribe 요청")
             return True
