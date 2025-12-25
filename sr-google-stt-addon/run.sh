@@ -2,17 +2,6 @@
 
 echo "--- SR Google STT 서버 시작 중 ---"
 
-# 디버깅: Python과 패키지 확인
-echo "[DEBUG] Python 버전:"
-python3 --version
-
-echo "[DEBUG] 설치된 패키지:"
-pip3 list | grep -i wyoming
-
-echo "[DEBUG] 파일 확인:"
-ls -la /wyoming_stt.py
-ls -la /app.py
-
 # Flask REST API 서버 백그라운드 실행
 echo "[INFO] Flask 서버 시작..."
 python3 /app.py &
