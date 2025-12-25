@@ -1,0 +1,16 @@
+name: SR Google STT
+slug: sr_google_stt
+version: "1.0.0"
+description: Google Web Speech STT addon
+
+arch:
+  - aarch64
+
+startup: services
+boot: auto
+
+build_from:
+  aarch64: ghcr.io/home-assistant/aarch64-base:3.19
+
+ports:
+  5000/tcp: 5050
