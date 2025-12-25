@@ -47,6 +47,7 @@ class GoogleSttEventHandler(AsyncEventHandler):
                                     ),
                                     installed=True,
                                     languages=["ko-KR", "en-US", "ja-JP", "zh-CN"],
+                                    version="1.0"  # <--- Add this line
                                 )
                             ],
                         )
