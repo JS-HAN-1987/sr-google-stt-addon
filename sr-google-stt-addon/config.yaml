@@ -1,6 +1,6 @@
 name: "SR Google STT"
-description: "Google Speech Recognition STT 서버"
-version: "1.0.1"
+description: "Google Speech Recognition STT 서버 (REST API + Wyoming Protocol)"
+version: "2.0.0"
 slug: "sr_google_stt"
 init: false
 arch:
@@ -8,7 +8,12 @@ arch:
   - amd64
   - armv7
   - armhf
-network_mode: host
+ports:
+  5005/tcp: 5005
+  10300/tcp: 10300
+ports_description:
+  5005/tcp: "REST API 포트"
+  10300/tcp: "Wyoming Protocol 포트 (HA 음성 어시스턴트)"
 options:
   port: 5005
   language: "ko-KR"
