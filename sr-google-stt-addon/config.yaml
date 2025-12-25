@@ -1,6 +1,6 @@
 name: "SR Google STT"
 description: "Google Speech Recognition STT 서버 (REST API + Wyoming Protocol)"
-version: "2.0.0"
+version: "2.0.1"
 slug: "sr_google_stt"
 init: false
 arch:

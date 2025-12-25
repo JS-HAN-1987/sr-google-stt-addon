@@ -17,8 +17,11 @@ COPY app.py /
 COPY wyoming_stt.py /
 COPY requirements.txt /
 
-# 의존성 설치
-RUN pip3 install --no-cache-dir --break-system-packages -r /requirements.txt
+# 의존성 설치 (디버깅 정보 포함)
+RUN echo "[INFO] Python 패키지 설치 중..." && \
+    pip3 install --no-cache-dir --break-system-packages -r /requirements.txt && \
+    echo "[INFO] 설치된 패키지:" && \
+    pip3 list | grep -E "(Flask|SpeechRecognition|wyoming)"
 
 # 실행 권한 부여
 RUN chmod a+x /run.sh

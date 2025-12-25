@@ -131,24 +131,44 @@ class GoogleSttEventHandler(AsyncEventHandler):
 
 async def main():
     """메인 함수"""
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(levelname)s] %(message)s'
+    )
     
     # 설정
     host = "0.0.0.0"
     port = 10300  # Wyoming STT 표준 포트
     language = "ko-KR"
     
-    _LOGGER.info(f"Google STT Wyoming 서버 시작")
-    _LOGGER.info(f"주소: {host}:{port}")
-    _LOGGER.info(f"언어: {language}")
-    
-    # 서버 시작
-    server = AsyncServer.from_uri(f"tcp://{host}:{port}")
-    
-    await server.run(
-        partial(GoogleSttEventHandler, language=language)
-    )
+    try:
+        _LOGGER.info("=" * 50)
+        _LOGGER.info("Google STT Wyoming 서버 시작")
+        _LOGGER.info(f"주소: {host}:{port}")
+        _LOGGER.info(f"언어: {language}")
+        _LOGGER.info("=" * 50)
+        
+        # 서버 시작
+        server = AsyncServer.from_uri(f"tcp://{host}:{port}")
+        
+        _LOGGER.info("서버 리스닝 중...")
+        await server.run(
+            partial(GoogleSttEventHandler, language=language)
+        )
+    except Exception as e:
+        _LOGGER.error(f"서버 시작 실패: {e}")
+        import traceback
+        traceback.print_exc()
+        raise
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n서버 종료됨")
+    except Exception as e:
+        print(f"치명적 오류: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
