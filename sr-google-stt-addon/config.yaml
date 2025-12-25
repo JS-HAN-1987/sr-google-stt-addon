@@ -1,6 +1,6 @@
 name: "SR Google STT"
 description: "Google Speech Recognition STT 서버"
-version: "1.0.0"
+version: "1.0.1"
 slug: "sr_google_stt"
 init: false
 arch:
@@ -8,8 +8,7 @@ arch:
   - amd64
   - armv7
   - armhf
-ports:
-  5005/tcp: null
+network_mode: host
 options:
   port: 5005
   language: "ko-KR"
